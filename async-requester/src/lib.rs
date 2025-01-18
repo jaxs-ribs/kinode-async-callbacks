@@ -48,13 +48,7 @@ fn handle_request(state: &mut State, _source: &Address) -> anyhow::Result<()> {
         state,
         &address,
         AsyncRequest::StepA("Mashed Potatoes".to_string()),
-        (response_body, st) {
-            kiprintln!("Got a response: {:?}",
-                String::from_utf8_lossy(response_body)
-            );
-            st.my_lego_stack.push("Got StepA result!".into());
-            Ok(())
-        }
+        (response_body, st) { handle_step_a(response_body, st) }
     )
 }
 
