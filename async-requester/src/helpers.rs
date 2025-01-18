@@ -71,7 +71,6 @@ pub fn handle_step_a(response_body: &[u8], state: &mut State) -> anyhow::Result<
     );
     state.my_lego_stack.push("Got StepA result!".into());
 
-    // Trigger StepB
     let address: Address = ("our", "async-receiver", "async-callbacks", "template.os").into();
     send_async!(
         state,
@@ -88,7 +87,6 @@ pub fn handle_step_b(response_body: &[u8], state: &mut State) -> anyhow::Result<
     );
     state.my_lego_stack.push("Got StepB result!".into());
 
-    // Trigger StepC
     let address: Address = ("our", "async-receiver", "async-callbacks", "template.os").into();
     send_async!(
         state,
