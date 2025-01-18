@@ -1,0 +1,27 @@
+interface async-callbacks {
+    variant request {
+        send(send-request),
+        /// history of async-callbacks with given node
+        history(string),
+    }
+
+    variant response {
+        send,
+        history(list<async-callbacks-message>),
+    }
+
+    record send-request {
+        target: string,
+        message: string,
+    }
+
+    record async-callbacks-message {
+        author: string,
+        content: string,
+    }
+}
+
+world async-callbacks-template-dot-os-v0 {
+    import async-callbacks;
+    include process-v1;
+}

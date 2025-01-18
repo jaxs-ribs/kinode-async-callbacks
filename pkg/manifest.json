@@ -1,0 +1,26 @@
+[
+    {
+        "process_name": "async-requester",
+        "process_wasm_path": "/async-requester.wasm",
+        "on_exit": "None",
+        "request_networking": true,
+        "request_capabilities": [
+            "http-server:distro:sys",
+            "vfs:distro:sys"
+        ],
+        "grant_capabilities": [],
+        "public": true
+    }, 
+    {
+        "process_name": "async-receiver",
+        "process_wasm_path": "/async-receiver.wasm",
+        "on_exit": "None",
+        "request_networking": true,
+        "request_capabilities": [
+            "http-server:distro:sys",
+            "vfs:distro:sys"
+        ],
+        "grant_capabilities": [],
+        "public": true
+    }
+]
