@@ -1,6 +1,8 @@
 use serde::{Deserialize, Serialize};
 use process_macros::SerdeJsonInto;
 
+pub mod app_macro;
+use app_macro::*;
 
 #[derive(Debug, Serialize, Deserialize, SerdeJsonInto, Clone)]
 pub enum AsyncRequest {
