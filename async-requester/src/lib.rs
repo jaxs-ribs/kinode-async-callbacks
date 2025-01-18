@@ -4,7 +4,6 @@ use kinode_process_lib::await_message;
 use kinode_process_lib::call_init;
 use kinode_process_lib::kiprintln;
 use kinode_process_lib::logging::error;
-use kinode_process_lib::logging::info;
 use kinode_process_lib::logging::init_logging;
 use kinode_process_lib::logging::Level;
 use kinode_process_lib::Address;
@@ -43,22 +42,19 @@ fn handle_message(_our: &Address, message: &Message, state: &mut State) -> anyho
 
 fn handle_request(state: &mut State, _source: &Address) -> anyhow::Result<()> {
     kiprintln!("Got a request to trigger an async operation");
-    let address: Address = (
-        "our",
-        "async-receiver",
-        "async-callbacks",
-        "template.os",
-    )
-        .into();
+    let address: Address = ("our", "async-receiver", "async-callbacks", "template.os").into();
 
-    send_async_request(
+    send_async!(
         state,
         &address,
         AsyncRequest::StepA("Mashed Potatoes".to_string()),
-        move |response_body: &[u8], _state: &mut State| {
-            kiprintln!("Got a response: {:?}", String::from_utf8_lossy(response_body));
+        (response_body, st) {
+            kiprintln!("Got a response: {:?}",
+                String::from_utf8_lossy(response_body)
+            );
+            st.my_lego_stack.push("Got StepA result!".into());
             Ok(())
-        },
+        }
     )
 }
 

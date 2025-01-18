@@ -3,13 +3,15 @@
 It's now possible to send async requests with a callback handler! This is extremely rudimentary, but we can now write macros to make this much more ergonomic!
 
 ```rust
-send_async_request(
-    state,
-    &address,
-    AsyncRequest::StepA("Some data".to_string()),
-    |response_body, state| {
-        // Handle the response here
-        kiprintln!("Got response: {:?}", String::from_utf8_lossy(response_body));
+send_async!(
+    state,            
+    &address,         
+    AsyncRequest::StepA("Mashed Potatoes".to_string()),  
+    (response_body, st) {
+        kiprintln!("Got a response: {:?}",
+            String::from_utf8_lossy(response_body)
+        );
+        st.my_lego_stack.push("Got StepA result!".into());
         Ok(())
     }
 )?;
