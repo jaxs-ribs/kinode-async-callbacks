@@ -104,3 +104,4 @@ pub fn handle_step_c(response_body: &[u8], state: &mut State) -> anyhow::Result<
     state.my_lego_stack.push("Got StepC result!".into());
     Ok(())
 }
+

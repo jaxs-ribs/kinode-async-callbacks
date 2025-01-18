@@ -1,6 +1,10 @@
 # Async Requests with Callbacks
 
-It's now possible to send async requests with a callback handler! This is extremely rudimentary, but we can now write macros to make this much more ergonomic!
+This project demonstrates a pattern for handling chained async requests with callbacks in Rust, similar to RxJS's observable patterns. It provides a clean way to handle sequences of asynchronous operations where each step depends on the previous one.
+
+## Basic Usage
+
+The simplest way to make an async request with a callback is using the `send_async!` macro:
 
 ```rust
 send_async!(
